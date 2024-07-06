@@ -27,7 +27,7 @@ function App() {
     axios.delete(`${urlApi}/1`)
     .then(() => {
       setData([])
-      // alert("Delete Complete")
+      alert("Delete Complete")
     })
   }
 
