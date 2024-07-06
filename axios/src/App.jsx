@@ -1,63 +1,10 @@
-import axios from 'axios'
-import { useState } from 'react'
+import RandomDog from "./components/RandomDog";
 
 function App() {
-  const urlApi = "https://jsonplaceholder.typicode.com/posts"
-  const [data, setData] = useState([])
-  const [error, setError] = useState("")
-
-  const handleGet = ()=> {
-    axios.get(`${urlApi}/1`)
-    .then(response => {setData(response.data)})
-    .catch(error => {
-      setError(`Error: ${error}`)
-    })
-  }
-
-  const handlePost = ()=> {
-    axios.post(`${urlApi}`, {
-      title: "AA TT KAI",
-      body: "kakakakakakakakakaa"
-    })
-    .then(response => {setData(response.data)})
-    .catch(error => {
-      setError(`Error: ${error}`)
-    })
-  }
-
-  const handlePut = ()=> {
-    axios.put(`${urlApi}/1`, {
-      title: "AA Mamipoko",
-      body: "AA Paaom deknoi kai kak plakapong"
-    })
-    .then(response => {setData(response.data)})
-    .catch(error => {
-      setError(`Error: ${error}`)
-    })
-  }
-
-  const handleDelete = ()=> {
-    axios.delete(`${urlApi}/1`)
-    .then(() => {
-      setData([])
-      alert("Delete Complete")
-    })
-    .catch(error => {
-      setError(`Error: ${error}`)
-    })
-  }
-
-  if(error) return error
-
   return (
-    <div align="center">
-      <h1>{data.title}</h1>
-      <p>{data.body}</p>
-      <button onClick={handleGet}>GET</button>
-      <button onClick={handlePost}>Post</button>
-      <button onClick={handlePut}>Put</button>
-      <button onClick={handleDelete}>Delete</button>
-    </div>
+    <>
+      <RandomDog />
+    </>
   );
 }
 
