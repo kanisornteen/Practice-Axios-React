@@ -4,23 +4,36 @@ import { useState } from 'react'
 function App() {
   const urlApi = "https://jsonplaceholder.typicode.com/posts"
   const [data, setData] = useState([])
+  const [error, setError] = useState("")
 
   const handleGet = ()=> {
-    axios.get(`${urlApi}/1`).then(response => {setData(response.data)})
+    axios.get(`${urlApi}/1`)
+    .then(response => {setData(response.data)})
+    .catch(error => {
+      setError(`Error: ${error}`)
+    })
   }
 
   const handlePost = ()=> {
     axios.post(`${urlApi}`, {
       title: "AA TT KAI",
       body: "kakakakakakakakakaa"
-    }).then(response => {setData(response.data)})
+    })
+    .then(response => {setData(response.data)})
+    .catch(error => {
+      setError(`Error: ${error}`)
+    })
   }
 
   const handlePut = ()=> {
     axios.put(`${urlApi}/1`, {
       title: "AA Mamipoko",
       body: "AA Paaom deknoi kai kak plakapong"
-    }).then(response => {setData(response.data)})
+    })
+    .then(response => {setData(response.data)})
+    .catch(error => {
+      setError(`Error: ${error}`)
+    })
   }
 
   const handleDelete = ()=> {
@@ -29,7 +42,12 @@ function App() {
       setData([])
       alert("Delete Complete")
     })
+    .catch(error => {
+      setError(`Error: ${error}`)
+    })
   }
+
+  if(error) return error
 
   return (
     <div align="center">
