@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import './Validation.css'
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { FormControl } from '@mui/material';
 
 const Validation = ()=> {
     const [inputData, setInputData] = useState({
@@ -48,31 +49,23 @@ const Validation = ()=> {
     }
 
     return (
-        <div className="container-form">
-            <form onSubmit={handleSubmit}>
-                <h1>Validation</h1>
-                <div className="input-box">
-                    <label htmlFor="">Username</label>
-                    <input type="text" name="username" onChange={getInput} />
-                    {errorData.username && <small>{errorData.username}</small>}
-                </div>
-                <div className="input-box">
-                    <label htmlFor="">Email</label>
-                    <input type="email" name="email" onChange={getInput} />
-                    {errorData.email && <small>{errorData.email}</small>}
-                </div>
-                <div className="input-box">
-                    <label htmlFor="">Password</label>
-                    <input type="password" name="password" onChange={getInput} />
-                    {errorData.password && <small>{errorData.password}</small>}
-                </div>
-                <div className="input-box">
-                    <label htmlFor="">Confirm Password</label>
-                    <input type="password" name="password2" onChange={getInput} />
-                    {errorData.password2 && <small>{errorData.password2}</small>}
-                </div>
-                <Button type='submit' variant="contained" color='error' sx={{width: "100%", marginTop: "10px"}}>Sing UP!</Button>
-            </form>
+        <div className='container-form'>
+            <h1>Validation</h1>
+            <Box
+                component="form"
+                sx={{
+                    '& > :not(style)': { m: 1, width: '25ch' },
+                }}
+                noValidate
+                autoComplete="off"
+                onSubmit={handleSubmit}
+            >
+                <TextField type='text' label="Username" name="username" variant="outlined" helperText={errorData.username && errorData.username} onChange={getInput} />          
+                <TextField type='email' label="Email" name="email" variant="outlined" helperText={errorData.email && errorData.email} onChange={getInput} />
+                <TextField type='password' label="Password" name="password" variant="outlined" helperText={errorData.password && errorData.password} onChange={getInput} />
+                <TextField type='password' label="Comfirm Password" name="password2" variant="outlined" helperText={errorData.password2 && errorData.password2} onChange={getInput} />
+                <Button variant="contained" type='submit'>Register!</Button>
+            </Box>
         </div>
     );
 }
